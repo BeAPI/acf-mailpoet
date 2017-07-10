@@ -1,0 +1,13 @@
+{
+  "name": "bea/acf-mailpoet",
+  "description": "Add ACF Mailpoet",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "BeAPI",
+      "email": "technique@beapi.fr"
+    }
+  ],
+  "type": "wordpress-plugin"
+}
