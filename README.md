@@ -2,7 +2,7 @@
 
 ## Description ##
 
-This enhance ACF with a field Mailpoet. It allows you to select a particular form created with Mailpoet as an option and then can use it in your templates with a shortcode for example.
+This enhance ACF with a field Mailpoet. It allows you to select a particular form created with Mailpoet as an option and then you can use it in your templates with a shortcode for example.
 
 ## Important to know ##
 
