@@ -71,8 +71,6 @@ class acf_field_mailpoet_plugin {
 	 * @since 1.0.0
 	 */
 	public static function register_field_v5() {
-		var_dump( class_exists( 'MailPoet\Models\Form' ));
-
 		if ( ! class_exists( 'WYSIJA' ) && ! class_exists( '\MailPoet\Models\Form' ) ) {
 			return false;
 		}
