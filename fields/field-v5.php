@@ -7,7 +7,7 @@ class acf_field_form_wisija_select extends acf_field {
 	 */
 	public function __construct() {
 		$this->name     = 'wisija_select';
-		$this->label    = __( 'Form Newsletter', 'acf-mailpoet' );
+		$this->label    = __( 'Mailpoet Form Newsletter', 'acf-mailpoet' );
 		$this->category = 'choice';
 		$this->defaults = [
 			'multiple'      => 0,
@@ -71,8 +71,8 @@ class acf_field_form_wisija_select extends acf_field {
 			'type'         => 'radio',
 			'name'         => 'multiple',
 			'choices'      => [
-				1 => __( "Yes", 'acf' ),
-				0 => __( "No", 'acf' ),
+				1 => __( 'Yes', 'acf' ),
+				0 => __( 'No', 'acf' ),
 			],
 			'layout'       => 'horizontal',
 		] );
@@ -95,7 +95,7 @@ class acf_field_form_wisija_select extends acf_field {
 
 		// placeholder
 		if ( empty( $field['placeholder'] ) ) {
-			$field['placeholder'] = __( "Select", 'acf' );
+			$field['placeholder'] = __( 'Select', 'acf' );
 		}
 
 		// vars
@@ -182,18 +182,38 @@ class acf_field_form_wisija_select extends acf_field {
 	 */
 	private function _options() {
 
-		$model_forms = WYSIJA::get('forms', 'model');
-		$forms       = apply_filters( 'acf_mailpoet_form_ids', $model_forms->getRows(), $model_forms );
+		if ( self::is_mailpoet_v3() ) {
+			$model_forms = \MailPoet\Models\Form::getPublished()->orderByAsc( 'name' )->findArray();
+			$forms       = apply_filters( 'acf_mailpoet_form_ids', $model_forms );
+		} else {
+			$model_forms = WYSIJA::get( 'forms', 'model' );
+			$forms       = apply_filters( 'acf_mailpoet_form_ids', $model_forms->getRows(),  $model_forms );
+		}
 
 		$output = [];
 		foreach ( (array) $forms as $content ) {
 			$output[] = [
-				'value' => $content['form_id'],
+				'value' => ( ! empty( $content['form_id'] ) ) ? $content['form_id'] : $content['id'],
 				'label' => $content['name']
 			];
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Determine version of Mailpoet
+	 *
+	 * @since 2.0
+	 * @return bool
+	 * @author Romain DORR
+	 */
+	public static function is_mailpoet_v3() {
+		if ( class_exists( 'MailPoet\Models\Form' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }
 

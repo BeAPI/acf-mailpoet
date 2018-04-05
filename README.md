@@ -26,8 +26,7 @@ composer require bea/acf-mailpoet
 ## Requirements
 
 * [Mailpoet 2.7.10](https://fr.wordpress.org/plugins/wysija-newsletters/) 
-
-not tested yet with beta version 3* of Mailpoet
+* [Mailpoet 3.6.0](https://wordpress.org/plugins/mailpoet/) 
 
 ## Screenshots
 
@@ -40,6 +39,10 @@ Then select your Mailpoet Form :
 ![Field in admin](/assets/img/screen1.png?raw=true)
 
 ## Changelog ##
+
+### 2.0
+* 05 April 2018
+* Add compatibility with Mailpoet v3
 
 ### 1.0.1
 * 10 July 2017
