@@ -1,9 +1,9 @@
 <?php
 /*
  Plugin Name: Advanced Custom Fields: MAILPOET
- Version: 1.0.1
+ Version: 2.0
  Plugin URI: http://www.beapi.fr
- Description: Add MAILPO icon selector
+ Description: Add Mailpoet form selector
  Author: BE API Technical team
  Author URI: http://www.beapi.fr
  Domain Path: languages
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-define( 'ACF_MAILPO_VERSION', '1.0.1' );
+define( 'ACF_MAILPO_VERSION', '2.0' );
 define( 'ACF_MAILPO_DIR', plugin_dir_path( __FILE__ ) );
 
 class acf_field_mailpoet_plugin {
@@ -71,8 +71,9 @@ class acf_field_mailpoet_plugin {
 	 * @since 1.0.0
 	 */
 	public static function register_field_v5() {
+		var_dump( class_exists( 'MailPoet\Models\Form' ));
 
-		if ( ! class_exists( 'WYSIJA' ) ) {
+		if ( ! class_exists( 'WYSIJA' ) && ! class_exists( '\MailPoet\Models\Form' ) ) {
 			return false;
 		}
 
